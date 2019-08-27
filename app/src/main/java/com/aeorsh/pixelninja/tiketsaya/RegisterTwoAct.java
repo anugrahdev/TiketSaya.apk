@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -64,36 +65,54 @@ public class RegisterTwoAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //ubah menjadi loading
-                btn_continue.setEnabled(false);
-                btn_continue.setText("Loading...");
-                //menyimpan pada firebase
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
-                storage = FirebaseStorage.getInstance().getReference().child("Photo_users").child(username_key_new);
 
-                // validasi userfile (ada ?)
-                if (photo_location != null){
-                    StorageReference storageReference = storage.child(System.currentTimeMillis() + "." + getFileExtension(photo_location));
-                    storageReference.putFile(photo_location).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                final String input_nama_lengkap = nama_lengkap.getText().toString();
+                final String input_bio = bio.getText().toString();
+
+                if (input_nama_lengkap.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Nama kosong!", Toast.LENGTH_SHORT).show();
+                }else{
+                    if (input_bio.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "Bio/Passion kosong!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        btn_continue.setEnabled(false);
+                        btn_continue.setText("Loading...");
+                        //menyimpan pada firebase
+                        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
+                        storage = FirebaseStorage.getInstance().getReference().child("Photo_users").child(username_key_new);
+
+                        // validasi userfile (ada ?)
+                        if (photo_location != null){
+                            StorageReference storageReference = storage.child(System.currentTimeMillis() + "." + getFileExtension(photo_location));
+                            storageReference.putFile(photo_location).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onSuccess(Uri uri) {
-                                    reference.getRef().child("url_photo_profile").setValue(uri.toString());
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            reference.getRef().child("url_photo_profile").setValue(uri.toString());
+                                        }
+                                    });
+
+                                    reference.getRef().child("nama_lengkap").setValue(input_nama_lengkap);
+                                    reference.getRef().child("bio").setValue(input_bio);
+                                }
+                            }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    Intent gotoSuccessPage = new Intent(RegisterTwoAct.this, SuccessRegisterAct.class);
+                                    startActivity(gotoSuccessPage);
                                 }
                             });
-
-                            reference.getRef().child("nama_lengkap").setValue(nama_lengkap.getText().toString());
-                            reference.getRef().child("bio").setValue(bio.getText().toString());
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Foto kosong!", Toast.LENGTH_SHORT).show();
+                            btn_continue.setEnabled(true);
+                            btn_continue.setText("CONTINUE");
                         }
-                    }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                            Intent gotoSuccessPage = new Intent(RegisterTwoAct.this, SuccessRegisterAct.class);
-                            startActivity(gotoSuccessPage);
-                        }
-                    });
+                    }
                 }
+
+
 
 
 

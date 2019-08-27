@@ -44,32 +44,46 @@ public class RegisterOneAct extends AppCompatActivity {
             public void onClick(View v) {
                 //menyimpan data pada local storage (handphone)
 
-                btn_continue.setEnabled(false);
-                btn_continue.setText("Loading..");
-                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(username_key, username.getText().toString());
-                editor.apply();
+                final String inputusername =  username.getText().toString();
+                final String inputpassword = password.getText().toString();
+                final String inputemail = email_address.getText().toString();
 
-                //Simpan ke database
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getRef().child("username").setValue(username.getText().toString());
-                        dataSnapshot.getRef().child("password").setValue(password.getText().toString());
-                        dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
-                        dataSnapshot.getRef().child("user_balance").setValue(0);
+                if (inputusername.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Username kosong!", Toast.LENGTH_SHORT).show();
+                }else{
+                    if (inputpassword.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "Password kosong!", Toast.LENGTH_SHORT).show();
+                    }else if(inputemail.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "Email kosong!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        btn_continue.setEnabled(false);
+                        btn_continue.setText("Loading..");
+                        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(username_key, username.getText().toString());
+                        editor.apply();
+
+                        //Simpan ke database
+                        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                dataSnapshot.getRef().child("username").setValue(inputusername);
+                                dataSnapshot.getRef().child("password").setValue(inputpassword);
+                                dataSnapshot.getRef().child("email_address").setValue(inputemail);
+                                dataSnapshot.getRef().child("user_balance").setValue(0);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        Intent gotonextreg = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
+                        startActivity(gotonextreg);
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                Intent gotonextreg = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
-                startActivity(gotonextreg);
+                }
 
             }
         });
