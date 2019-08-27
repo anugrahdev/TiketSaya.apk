@@ -79,43 +79,41 @@
 
                 <ImageView
                     android:id="@+id/pic_user_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/foto" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
             </com.github.florent37.shapeofview.shapes.CircleView>
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/nama_lengkap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="28dp"
                 android:fontFamily="@font/mmedium"
-                android:text="Name"
                 android:textColor="#fff"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
+                android:id="@+id/bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/mlight"
-                android:text="Bio"
                 android:textColor="#fff"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
+                android:id="@+id/user_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="36dp"
                 android:fontFamily="@font/mregular"
-                android:text="US$ 0"
                 android:textColor="@color/GreenPrimary"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="@+id/view2"

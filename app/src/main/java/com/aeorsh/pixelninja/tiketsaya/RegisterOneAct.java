@@ -43,6 +43,9 @@ public class RegisterOneAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //menyimpan data pada local storage (handphone)
+
+                btn_continue.setEnabled(false);
+                btn_continue.setText("Loading..");
                 SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(username_key, username.getText().toString());

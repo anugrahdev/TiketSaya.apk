@@ -61,15 +61,17 @@ public class SignInAct extends AppCompatActivity {
 //                            Toast.makeText(getApplicationContext(), "Username ada!", Toast.LENGTH_SHORT).show();
                             //ambil data password
                             String passwordFromFirebase = dataSnapshot.child("password").getValue().toString();
-
                             //Validasi dengan password firebase
                             if (password.equals(passwordFromFirebase)){
-
 
                                 // simpan username pada lokal
                                 SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString(username_key, xusername.getText().toString());
+                                editor.apply();
+
+                                btn_sign_in.setEnabled(false);
+                                btn_sign_in.setText("Loading...");
 
 
                                 //pindah activity
@@ -99,4 +101,6 @@ public class SignInAct extends AppCompatActivity {
             }
         });
     }
+
+
 }
