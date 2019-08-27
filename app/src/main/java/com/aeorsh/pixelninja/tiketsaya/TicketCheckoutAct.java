@@ -155,7 +155,7 @@ public class TicketCheckoutAct extends AppCompatActivity {
 
                 value_total_harga = value_harga_tiket * value_jumlah_tiket;
                 text_total_harga.setText("US$ "+value_total_harga+"");
-                if (value_total_harga < saldo){
+                if (value_total_harga < saldo || value_total_harga == saldo){
                     btn_buy_now.animate().translationY(0).alpha(1).setDuration(350).start();
                     btn_buy_now.setEnabled(true);
                     text_saldo.setTextColor(Color.parseColor("#203DD1"));
@@ -178,46 +178,58 @@ public class TicketCheckoutAct extends AppCompatActivity {
         btn_buy_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //menyimpan data pembelian user di firebas dan membuat tabel MyTickets
-                referencetiket = FirebaseDatabase.getInstance().getReference().child("MyTickets")
-                        .child(username_key_new).child(nama_wisata.getText().toString() + nomor_transaksi);
-                referencetiket.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        referencetiket.getRef().child("id_ticket").setValue(nama_wisata.getText().toString() + nomor_transaksi);
-                        referencetiket.getRef().child("nama_wisata").setValue(nama_wisata.getText().toString());
-                        referencetiket.getRef().child("lokasi").setValue(lokasi.getText().toString());
-                        referencetiket.getRef().child("ketentuan").setValue(ketentuan.getText().toString());
-                        referencetiket.getRef().child("jumlah_tiket").setValue(value_jumlah_tiket);
-                        referencetiket.getRef().child("date_wisata").setValue(date_wisata);
-                        referencetiket.getRef().child("time_wisata").setValue(time_wisata);
+                if (saldo < value_total_harga){
+                    btn_buy_now.animate().translationY(250).alpha(0).setDuration(350).start();
+                    btn_buy_now.setEnabled(false);
+                    text_saldo.setTextColor(Color.RED);
+                    img_notice_saldo.setVisibility(View.VISIBLE);
+
+                }else{
+                    btn_buy_now.animate().translationY(0).alpha(1).setDuration(350).start();
+                    btn_buy_now.setEnabled(true);
+                    text_saldo.setTextColor(Color.parseColor("#203DD1"));
+                    img_notice_saldo.setVisibility(View.GONE);
+                    //menyimpan data pembelian user di firebas dan membuat tabel MyTickets
+                    referencetiket = FirebaseDatabase.getInstance().getReference().child("MyTickets")
+                            .child(username_key_new).child(nama_wisata.getText().toString() + nomor_transaksi);
+                    referencetiket.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            referencetiket.getRef().child("id_ticket").setValue(nama_wisata.getText().toString() + nomor_transaksi);
+                            referencetiket.getRef().child("nama_wisata").setValue(nama_wisata.getText().toString());
+                            referencetiket.getRef().child("lokasi").setValue(lokasi.getText().toString());
+                            referencetiket.getRef().child("ketentuan").setValue(ketentuan.getText().toString());
+                            referencetiket.getRef().child("jumlah_tiket").setValue(value_jumlah_tiket);
+                            referencetiket.getRef().child("date_wisata").setValue(date_wisata);
+                            referencetiket.getRef().child("time_wisata").setValue(time_wisata);
 
 
-                        Intent backtoSuccessBuy = new Intent(TicketCheckoutAct.this,SuccessBuyTicketAct.class);
-                        startActivity(backtoSuccessBuy);
+                            Intent backtoSuccessBuy = new Intent(TicketCheckoutAct.this,SuccessBuyTicketAct.class);
+                            startActivity(backtoSuccessBuy);
 
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
 
-                // update saldo user
-                reference4 = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
-                reference4.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        sisa_saldo = saldo - value_total_harga;
-                        reference4.getRef().child("user_balance").setValue(sisa_saldo);
-                    }
+                    // update saldo user
+                    reference4 = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
+                    reference4.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            sisa_saldo = saldo - value_total_harga;
+                            reference4.getRef().child("user_balance").setValue(sisa_saldo);
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+                }
 
 
 
