@@ -49,8 +49,8 @@
 
             <View
                 android:id="@+id/view5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="59.5dp"
+                android:layout_height="59.5dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_view_circle_picture"
@@ -91,7 +91,8 @@
                 android:layout_marginTop="28dp"
                 android:fontFamily="@font/mmedium"
                 android:textColor="#fff"
-                android:textSize="20sp"
+                android:text="Anang Nugraha"
+                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -102,8 +103,9 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/mlight"
+                android:text="programmer"
                 android:textColor="#fff"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -111,12 +113,15 @@
                 android:id="@+id/user_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="36dp"
                 android:fontFamily="@font/mregular"
+                android:text="300"
                 android:textColor="@color/GreenPrimary"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/view2"
+                app:layout_constraintStart_toEndOf="@+id/nama_lengkap"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <LinearLayout
@@ -217,6 +222,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btn_ticket_pagoda"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -224,6 +230,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:src="@drawable/icon_pagoda" />
@@ -249,6 +256,7 @@
                     android:weightSum="3">
 
                     <LinearLayout
+                        android:id="@+id/btn_ticket_candi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -256,6 +264,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:src="@drawable/icon_borobudur" />
@@ -272,6 +281,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btn_ticket_sphinx"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -279,6 +289,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:src="@drawable/icon_sphinx" />
@@ -295,6 +306,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btn_ticket_monas"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -302,6 +314,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:src="@drawable/icon_monas" />
