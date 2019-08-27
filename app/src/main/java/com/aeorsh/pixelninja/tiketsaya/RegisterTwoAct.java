@@ -80,7 +80,7 @@ public class RegisterTwoAct extends AppCompatActivity {
                                 }
                             });
 
-                            reference.getRef().child("nama_lebgkap").setValue(nama_lengkap.getText().toString());
+                            reference.getRef().child("nama_lengkap").setValue(nama_lengkap.getText().toString());
                             reference.getRef().child("bio").setValue(bio.getText().toString());
                         }
                     }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
