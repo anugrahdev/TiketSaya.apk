@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/mmedium"
         android:text="Buy Ticket"
@@ -38,9 +38,9 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/bg_layout_white"
         android:orientation="vertical"
         android:paddingLeft="24dp"
@@ -99,7 +99,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mregular"
-                    android:text="Menara Pisa"
                     android:textColor="@color/blackPrimary"
                     android:textSize="14dp" />
 
@@ -108,16 +107,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mlight"
-                    android:text="Pisa City, Italy"
                     android:textColor="@color/grayPrimary"
                     android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
-
-                android:layout_width="wrap_content"
+                android:gravity="right"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="7dp"
                 android:orientation="horizontal">
 
@@ -131,9 +129,9 @@
                     android:id="@+id/text_jumlahtiket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="6dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginRight="5dp"
                     android:fontFamily="@font/mregular"
                     android:text="1"
                     android:textColor="@color/blackPrimary"
@@ -150,13 +148,11 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/ticket_tos"
+            android:id="@+id/ketentuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mlight"
             android:lineSpacingExtra="8dp"
-            android:text="Anak yang berumur lebih dari 3 tahun
-            wajib membeli tiket"
             android:textSize="16dp" />
 
     </LinearLayout>
@@ -165,9 +161,9 @@
         android:id="@+id/layout_pricing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/bg_layout_white"
         android:orientation="vertical"
         android:paddingLeft="24dp"
@@ -241,15 +237,15 @@
                 android:fontFamily="@font/mmedium"
                 android:text="$0"
                 android:textColor="@color/GreenPrimary"
-                android:textSize="32dp" />
+                android:textSize="26dp" />
         </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_buy_now"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_btn_green_primary"
         android:fontFamily="@font/mmedium"
@@ -261,14 +257,16 @@
 
     <LinearLayout
         android:id="@+id/btn_back"
-        android:layout_width="90dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_layout_white"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/btn_buy_now"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_pricing">
 
         <ImageView
@@ -281,8 +279,8 @@
         android:id="@+id/img_notice_saldo"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/icon_tidak_cukup_uang"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />

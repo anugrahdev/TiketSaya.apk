@@ -49,7 +49,7 @@ public class SuccessBuyTicketAct extends AppCompatActivity {
         btn_view_ticket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotoTicket = new Intent(SuccessBuyTicketAct.this, MyTicketDetailAct.class);
+                Intent gotoTicket = new Intent(SuccessBuyTicketAct.this, MyProfileAct.class);
                 startActivity(gotoTicket);
             }
         });

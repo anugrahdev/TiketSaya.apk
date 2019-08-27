@@ -41,7 +41,7 @@ public class TicketDetailAct extends AppCompatActivity {
 
         //Mengambil data dari intent
         Bundle bundle = getIntent().getExtras();
-        String text = bundle.getString("jenis_tiket");
+        final String text = bundle.getString("jenis_tiket");
 
 //        Toast.makeText(getApplicationContext(),"Jenis tiket : "+text, Toast.LENGTH_SHORT).show();
 
@@ -71,6 +71,7 @@ public class TicketDetailAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gotoCheckout = new Intent(TicketDetailAct.this,TicketCheckoutAct.class);
+                gotoCheckout.putExtra("jenis_tiket",text);
                 startActivity(gotoCheckout);
             }
         });

@@ -12,10 +12,11 @@
         android:layout_width="260dp"
         android:layout_height="290dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/icon_success_ticket"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +57,7 @@
     <Button
         android:id="@+id/btn_view_ticket"
         android:layout_width="280dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="8dp"
@@ -74,7 +75,7 @@
     <Button
         android:id="@+id/btn_my_dashboard"
         android:layout_width="280dp"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
