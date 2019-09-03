@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class MyProfileAct extends AppCompatActivity {
     LinearLayout item_my_ticket;
-    Button btn_edit_profile;
+    Button btn_edit_profile,btn_back;
     ImageView photo_profile;
     TextView nama_lengkap, bio;
 
@@ -53,9 +53,10 @@ public class MyProfileAct extends AppCompatActivity {
         myticket_place = findViewById(R.id.myticket_place);
         myticket_place.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<MyTicket>();
+        btn_back = findViewById(R.id.btn_back);
 
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 nama_lengkap.setText(dataSnapshot.child("nama_lengkap").getValue().toString());
@@ -99,6 +100,14 @@ public class MyProfileAct extends AppCompatActivity {
             }
         });
 
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gohome = new Intent(MyProfileAct.this,HomeAct.class);
+                startActivity(gohome);
+            }
+        });
 
 
     }
