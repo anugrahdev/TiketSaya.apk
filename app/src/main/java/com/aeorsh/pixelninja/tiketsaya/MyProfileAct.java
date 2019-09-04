@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class MyProfileAct extends AppCompatActivity {
     LinearLayout item_my_ticket;
-    Button btn_edit_profile,btn_back;
+    Button btn_edit_profile,btn_back,btn_sign_out;
     ImageView photo_profile;
     TextView nama_lengkap, bio;
 
@@ -54,6 +54,7 @@ public class MyProfileAct extends AppCompatActivity {
         myticket_place.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<MyTicket>();
         btn_back = findViewById(R.id.btn_back);
+        btn_sign_out = findViewById(R.id.btn_sign_out);
 
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
         reference.addValueEventListener(new ValueEventListener() {
@@ -108,6 +109,23 @@ public class MyProfileAct extends AppCompatActivity {
                 startActivity(gohome);
             }
         });
+
+        btn_sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //menghapus value user local
+                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(username_key, null);
+                editor.apply();
+
+                //pindah act
+                Intent signout = new Intent(MyProfileAct.this, SignInAct.class);
+                startActivity(signout);
+                finish();
+            }
+        });
+
 
 
     }
