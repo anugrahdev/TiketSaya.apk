@@ -105,8 +105,7 @@ public class MyProfileAct extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gohome = new Intent(MyProfileAct.this,HomeAct.class);
-                startActivity(gohome);
+                onBackPressed();
             }
         });
 
@@ -120,12 +119,12 @@ public class MyProfileAct extends AppCompatActivity {
                 editor.apply();
 
                 //pindah act
-                Intent signout = new Intent(MyProfileAct.this, SignInAct.class);
-                startActivity(signout);
+                Intent logout = new Intent(MyProfileAct.this, GetStartedAct.class);
+                logout.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(logout);
                 finish();
             }
         });
-
 
 
     }
@@ -135,4 +134,6 @@ public class MyProfileAct extends AppCompatActivity {
         username_key_new = sharedPreferences.getString(username_key, "");
 
     }
+
+
 }

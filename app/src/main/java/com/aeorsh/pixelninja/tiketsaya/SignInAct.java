@@ -89,6 +89,7 @@ public class SignInAct extends AppCompatActivity {
                                         Intent gotoHome = new Intent(SignInAct.this, HomeAct.class);
                                         startActivity(gotoHome);
                                         Toast.makeText(getApplicationContext(), "Welcome!", Toast.LENGTH_SHORT).show();
+                                        finish();
 
                                     }else{
                                         Toast.makeText(getApplicationContext(), "Username atau Password salah!", Toast.LENGTH_SHORT).show();

@@ -119,6 +119,13 @@ public class EditProfileAct extends AppCompatActivity {
             }
         });
 
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         btn_add_new_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

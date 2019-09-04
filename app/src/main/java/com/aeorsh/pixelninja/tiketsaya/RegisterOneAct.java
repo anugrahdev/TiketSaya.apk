@@ -90,8 +90,7 @@ public class RegisterOneAct extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backtosignin = new Intent(RegisterOneAct.this, SignInAct.class);
-                startActivity(backtosignin);
+                onBackPressed();
             }
         });
 
