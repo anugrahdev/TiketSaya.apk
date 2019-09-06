@@ -256,14 +256,10 @@
             android:orientation="vertical">
 
             <Button
+                style="@style/btn_primary_blue_bg"
                 android:id="@+id/btn_buy_ticket"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_btn_blue_primary"
-                android:fontFamily="@font/mmedium"
                 android:text="Continue"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                 />
 
         </LinearLayout>
     </LinearLayout>

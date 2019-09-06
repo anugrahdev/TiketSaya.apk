@@ -22,7 +22,7 @@ public class RegisterOneAct extends AppCompatActivity {
     LinearLayout btn_back;
     Button btn_continue;
     EditText username,password, email_address;
-    DatabaseReference reference;
+    DatabaseReference reference, reference_user;
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
@@ -58,20 +58,40 @@ public class RegisterOneAct extends AppCompatActivity {
                     }else{
                         btn_continue.setEnabled(false);
                         btn_continue.setText("Loading..");
-                        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(username_key, username.getText().toString());
-                        editor.apply();
-
-                        //Simpan ke database
-                        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
-                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        reference_user = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                        reference_user.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                dataSnapshot.getRef().child("username").setValue(inputusername);
-                                dataSnapshot.getRef().child("password").setValue(inputpassword);
-                                dataSnapshot.getRef().child("email_address").setValue(inputemail);
-                                dataSnapshot.getRef().child("user_balance").setValue(0);
+                                if (dataSnapshot.exists()){
+                                    Toast.makeText(getApplicationContext(), "Username telah digunakan!", Toast.LENGTH_SHORT).show();
+                                    btn_continue.setEnabled(true);
+                                    btn_continue.setText("continue");
+                                }else{
+                                    SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(username_key, username.getText().toString());
+                                    editor.apply();
+
+                                    //Simpan ke database
+                                    reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().child("username").setValue(inputusername);
+                                            dataSnapshot.getRef().child("password").setValue(inputpassword);
+                                            dataSnapshot.getRef().child("email_address").setValue(inputemail);
+                                            dataSnapshot.getRef().child("user_balance").setValue(0);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    Intent gotonextreg = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
+                                    startActivity(gotonextreg);
+                                }
                             }
 
                             @Override
@@ -80,8 +100,6 @@ public class RegisterOneAct extends AppCompatActivity {
                             }
                         });
 
-                        Intent gotonextreg = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
-                        startActivity(gotonextreg);
                     }
                 }
 

@@ -326,14 +326,10 @@
                     android:orientation="vertical">
 
                     <Button
+                        style="@style/btn_primary_blue_bg"
                         android:id="@+id/btn_save"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@drawable/bg_btn_blue_primary"
-                        android:fontFamily="@font/mmedium"
                         android:text="SAVE PROFILE"
-                        android:textColor="#fff"
-                        android:textSize="20sp" />
+                         />
 
                 </LinearLayout>
             </LinearLayout>

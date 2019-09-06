@@ -197,14 +197,9 @@
             android:orientation="vertical">
 
             <Button
+                style="@style/btn_primary_green_bg"
                 android:id="@+id/btn_refund"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_btn_green_primary"
-                android:fontFamily="@font/mmedium"
-                android:text="REFUND NOW"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                android:text="REFUND NOW"/>
 
         </LinearLayout>
     </LinearLayout>

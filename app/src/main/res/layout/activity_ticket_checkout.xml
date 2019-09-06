@@ -284,13 +284,8 @@
 
             <Button
                 android:id="@+id/btn_buy_now"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_btn_green_primary"
-                android:fontFamily="@font/mmedium"
-                android:text="Continue"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                style="@style/btn_primary_green_bg"
+                android:text="Continue" />
 
         </LinearLayout>
     </LinearLayout>
